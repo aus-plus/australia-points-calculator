@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاسبه امتیاز مهاجرت استرالیا | Aus_Plus</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+            direction: rtl;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0052cc;
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #0052cc;
+        }
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #0052cc;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #003d99;
+        }
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e6f7ff;
+            border: 2px solid #91d5ff;
+            border-radius: 6px;
+            text-align: center;
+        }
+        #result h2 {
+            margin-top: 0;
+            color: #0052cc;
+        }
+        #total-score {
+            font-size: 3em;
+            font-weight: bold;
+            color: #00a85a;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .footer span {
+            font-weight: bold;
+            color: #0052cc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>محاسبه امتیاز مهاجرت ماهر استرالیا (Skilled Migration Points)</h1>
+    
+    <div class="section">
+        <label for="age">سن متقاضی:</label>
+        <select id="age">
+            <option value="0">انتخاب کنید</option>
+            <option value="0">زیر ۱۸ یا بالای ۴۵</option>
+            <option value="15">۱۸ - ۲۴ سال (۱۵ امتیاز)</option>
+            <option value="25">۲۵ - ۳۲ سال (۲۵ امتیاز)</option>
+            <option value="30">۳۳ - ۳۹ سال (۳۰ امتیاز)</option>
+            <option value="25">۴۰ - ۴۴ سال (۱۵ امتیاز)</option>
+        </select>
+    </div>
+
+    <div class="section">
+        <label for="english">سطح زبان انگلیسی (آیلتس یا معادل آن):</label>
+        <select id="english">
+            <option value="0">انتخاب کنید</option>
+            <option value="0">Competent (نمره ۶ در هر ۴ مهارت)</option>
+            <option value="10">Proficient (نمره ۷ در هر ۴ مهارت - ۱۰ امتیاز)</option>
+            <option value="20">Superior (نمره ۸ در هر ۴ مهارت - ۲۰ امتیاز)</option>
+        </select>
+    </div>
+
+    <div class="section">
+        <label for="qualification">بالاترین مدرک تحصیلی:</label>
+        <select id="qualification">
+            <option value="0">انتخاب کنید</option>
+            <option value="10">مدارک فنی (Trade Qualification) یا دیپلم</option>
+            <option value="15">مدرک کارشناسی (لیسانس) یا کارشناسی ارشد</option>
+            <option value="20">مدرک دکترا</option>
+        </select>
+    </div>
+
+    <div class="section">
+        <label for="experience">تجربه کاری مرتبط (خارج از استرالیا در ۱۰ سال اخیر):</label>
+        <select id="experience">
+            <option value="0">انتخاب کنید</option>
+            <option value="0">کمتر از ۳ سال</option>
+            <option value="5">۳ تا ۵ سال (۵ امتیاز)</option>
+            <option value="10">۵ تا ۸ سال (۱۰ امتیاز)</option>
+            <option value="15">۸ سال و بیشتر (۱۵ امتیاز)</option>
+        </select>
+    </div>
+
+    <div class="section">
+        <h3>امتیازات اضافی (Bonus Points)</h3>
+        <label for="partner-skill">وضعیت همسر/شریک ماهر:</label>
+        <select id="partner-skill">
+            <option value="0">همسر یا شریک ندارم / همسر متقاضی ویزا نیست.</option>
+            <option value="10">همسر دارای ارزیابی مثبت مهارت، Competent English و زیر ۴۵ سال است. (۱۰ امتیاز)</option>
+            <option value="5">همسر فقط دارای Competent English است (ارزیابی مهارت ندارد). (۵ امتیاز)</option>
+        </select>
+    </div>
+    
+    <button onclick="calculatePoints()">محاسبه امتیاز نهایی</button>
+
+    <div id="result">
+        <h2>امتیاز کل شما: <span style="font-size: 0.7em; color: #888;">(محاسبه توسط Aus_Plus)</span></h2> 
+        <div id="total-score">۰</div>
+        <p id="visa-491-score" style="margin-top: 10px; font-size: 1.1em; color: #cc5200;">* اگر اسپانسرشیپ منطقه‌ای بگیرید (ویزای ۴۹۱)، ۱۵ امتیاز اضافه می‌گیرید.</p>
+    </div>
+    
+    <div class="footer">
+        طراحی و توسعه توسط <span>Aus_Plus</span>
+    </div>
+
+</div>
+
+<script>
+    function calculatePoints() {
+        // دریافت مقادیر از فرم
+        const agePoints = parseInt(document.getElementById('age').value);
+        const englishPoints = parseInt(document.getElementById('english').value);
+        const qualificationPoints = parseInt(document.getElementById('qualification').value);
+        const experiencePoints = parseInt(document.getElementById('experience').value);
+        const partnerPoints = parseInt(document.getElementById('partner-skill').value);
+
+        // محاسبه امتیاز کل برای ویزای ۱۸۹ (مستقل ماهر)
+        let totalPoints = agePoints + englishPoints + qualificationPoints + experiencePoints + partnerPoints;
+
+        // نمایش امتیاز کل
+        document.getElementById('total-score').innerText = totalPoints;
+
+        // نمایش اطلاعات ویزای ۴۹۱
+        const total190 = totalPoints + 5; // 5 امتیاز اضافه برای ویزای 190
+        const total491 = totalPoints + 15; // 15 امتیاز اضافه برای ویزای 491
+        
+        document.getElementById('visa-491-score').innerHTML = `
+            * امتیاز شما برای ویزای **۱۸۹ (مستقل ماهر)**: **${totalPoints}** <br>
+            * امتیاز شما برای ویزای **۱۹۰ (اسپانسر ایالتی)**: **${total190}** (۵ امتیاز اضافه)
+            <br>
+            * امتیاز شما برای ویزای **۴۹۱ (اسپانسر منطقه‌ای)**: **${total491}** (۱۵ امتیاز اضافه)
+        `;
+
+        // نمایش پیام راهنما (اختیاری)
+        if (totalPoints < 65) {
+            alert("امتیاز شما کمتر از حداقل ۶۵ است. لطفا گزینه‌های افزایش امتیاز را بررسی کنید.");
+        } else if (totalPoints >= 85) {
+            alert("امتیاز شما بسیار رقابتی است. شانس بالایی برای دعوت‌نامه دارید.");
+        } else if (totalPoints >= 65) {
+            alert("امتیاز شما قابل قبول است. رقابت برای دریافت دعوت‌نامه در این بازه بالاست.");
+        }
+    }
+</script>
+
+</body>
+</html>
